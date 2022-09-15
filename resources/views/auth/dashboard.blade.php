@@ -1,22 +1,92 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('auth/layout/app-layout')
+@section('title', 'Dashboard')
+@section('main')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Administrator - Dashboard </title>
-    <link rel="stylesheet" href="{{ asset('storage/css/app.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
+    <section id="quick-box">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card m-2 bg-info">
+                    <div class="card-body text-white">
+                        <h3>Category <i class="fa fa-archive float-end"></i></h3>
+                        <span>5 Total</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card m-2 bg-success">
+                    <div class="card-body text-white">
+                        <h3>Products <i class="fa fa-archive float-end"></i></h3>
+                        <span>5 Total</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card m-2 bg-warning">
+                    <div class="card-body">
+                        <h3>Category <i class="fa fa-archive float-end"></i></h3>
+                        <span>5 Total</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<body>
-    <form action="" method="post">
-        @csrf
-        <button type="submit">Logout</button>
-    </form>
-</body>
+    <section id="tables">
+        <div class="card my-4">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">No.</th>
+                                <th scope="col">ID Produk</th>
+                                <th scope="col">Nama Produk</th>
+                                <th scope="col">Kategori Produk</th>
+                                <th scope="col">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>@fat</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td colspan="2">Larry the Bird</td>
+                                <td>@twitter</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
 
-</html>
+
+
+@endsection

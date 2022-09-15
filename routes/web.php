@@ -24,11 +24,12 @@ Route::middleware(['guest'])->group(function () {
 });
 
 Route::middleware(['auth'])->group(function () {
+    Route::post('/admin/logout', [LoginController::class, 'logout'])->name('logout');
     Route::get('/admin/dashboard', [WebsiteController::class, 'index'])->name('dashboard');
     Route::get('/admin/category', [CategoryController::class, 'index'])->name('category');
     Route::post('/admin/category', [CategoryController::class, 'store'])->name('store_category');
     Route::delete('/admin/category/{id}', [CategoryController::class, 'destroy'])->name('delete_category');
-    Route::update('/admin/category/{id}', [CategoryController::class, 'update'])->name('update_category');
+    Route::patch('/admin/category/{id}', [CategoryController::class, 'update'])->name('update_category');
 });
 
 
