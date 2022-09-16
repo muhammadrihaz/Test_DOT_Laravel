@@ -1,19 +1,22 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\auth;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Category;
 
 class CategoryController extends Controller
 {
     public function index()
     {
-        return view('auth/category');
+        $category = Category::paginate(5);
+        return view('auth/category/index',['category'=>$category]);
     }
 
     public function create()
     {
-        return view('auth/create-category');
+        return view('auth/category/create');
     }
 
     public function store(Request $request)
@@ -27,7 +30,7 @@ class CategoryController extends Controller
         $category->nama = $request->nama;
         // Menyimpan kedalam database
         $category->save();
-        return $category;
+        return redirect()->route('category')->with('success', 'Data Kategori baru berhasil ditambahkan !');
 
     }
 
@@ -36,7 +39,7 @@ class CategoryController extends Controller
         // Mengambil Perameter id dari fungsi dan mencari.
         $category = category::where('id', $id)->first();
         // Menampilkan dan mengirimkan data kedalam view.
-        return view('auth/edit-category',['category'=>$category]);
+        return view('auth/category/edit',['category'=>$category]);
     }
 
     public function update(Request $request, $id)
@@ -50,13 +53,13 @@ class CategoryController extends Controller
         $category->nama = $request->nama;
         // Menyimpan kedalam database
         $category->save();
-        return $category;
+        return redirect()->route('category')->with('success', 'Data Kategori baru berhasil diupdate !');
     }
 
     public function destroy($id)
     {
         $category = category::find($id);
         $category->delete();
-        return $category;
+        return redirect()->route('category')->with('success', 'Data Kategori baru berhasil Dihapus !');
     }
 }

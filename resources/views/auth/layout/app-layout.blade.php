@@ -21,30 +21,32 @@
             </div>
 
             <ul class="list-unstyled components">
-                <li class="active">
-                    <a href="#homeSubmenu"><i class="fa fa-home mx-2"></i>Home</a>
+                <li class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                    <a href="{{ route('dashboard') }}"><i class="fa fa-home mx-2"></i>Home</a>
                 </li>
                 <li>
                     <a href="#category" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i
                             class="fa fa-sitemap mx-2"></i> Category</a>
-                    <ul class="collapse list-unstyled" id="category">
+                    <ul class="collapse list-unstyled {{ request()->routeIs('category') ? 'show' : (request()->routeIs('create_category') ? 'show' : '') }}"
+                        id="category">
                         <li>
-                            <a href="#">Page 1</a>
+                            <a href="{{ route('category') }}">Data Category</a>
                         </li>
                         <li>
-                            <a href="#">Page 2</a>
+                            <a href="{{ route('create_category') }}">Tambah Category</a>
                         </li>
                     </ul>
                 </li>
                 <li>
                     <a href="#product" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i
                             class="fa fa-archive mx-2" aria-hidden="true"></i>Product</a>
-                    <ul class="collapse list-unstyled" id="product">
+                    <ul class="collapse list-unstyled {{ request()->routeIs('product') ? 'show' : (request()->routeIs('create_product') ? 'show' : '') }}"
+                        id="product">
                         <li>
-                            <a href="#">Page 1</a>
+                            <a href="{{ route('product') }}">Data Product</a>
                         </li>
                         <li>
-                            <a href="#">Page 2</a>
+                            <a href="{{ route('create_product') }}">Tambah Product</a>
                         </li>
                     </ul>
                 </li>
@@ -66,8 +68,11 @@
                         <i class="fas fa-align-left"></i>
                     </button>
                     <div class="col-md-2">
-                        <input type="email" class="form-control" list="datalistOptions"
-                            placeholder="Search Product...">
+                        <form action="{{ route('search') }}" method="post">
+                            @csrf
+                            <input type="text" name="nama_produk" class="form-control" list="datalistOptions"
+                                placeholder="Search Product...">
+                        </form>
                     </div>
                     <datalist id="datalistOptions">
                         <option value="San Francisco">
@@ -106,6 +111,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
+    @include('sweetalert::alert')
 </body>
 
 </html>

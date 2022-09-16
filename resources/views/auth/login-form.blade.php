@@ -23,11 +23,11 @@
                             @csrf
                             <div class="form-group mb-4">
                                 <label class="form-label" for="email">Email address</label>
-                                <input type="email" id="email" class="form-control" name="email" />
+                                <input type="email" id="email" class="form-control" name="email" required />
                             </div>
                             <div class="form-group mb-4">
                                 <label class="form-label" for="password">Password</label>
-                                <input type="password" id="password" class="form-control" name="password" />
+                                <input type="password" id="password" class="form-control" name="password" required />
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="remember_me" id="remember_me"
@@ -41,7 +41,7 @@
             </div>
         </div>
     </div>
-
+    @include('sweetalert::alert')
 </body>
 
 </html>

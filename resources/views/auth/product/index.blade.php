@@ -1,39 +1,11 @@
 @extends('auth/layout/app-layout')
-@section('title', 'Dashboard')
+@section('title', 'Product')
 @section('main')
-
-    <section id="quick-box">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card m-2 bg-info">
-                    <div class="card-body text-white">
-                        <h3>Category <i class="fa fa-archive float-end"></i></h3>
-                        <span>{{ $t_category }} Total</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card m-2 bg-success">
-                    <div class="card-body text-white">
-                        <h3>Products <i class="fa fa-archive float-end"></i></h3>
-                        <span>{{ $t_product }} Total</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card m-2 bg-warning">
-                    <div class="card-body">
-                        <h3>Users <i class="fa fa-archive float-end"></i></h3>
-                        <span>{{ $user }} Total</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <section id="tables">
         <div class="card my-4">
             <div class="card-body">
+                <a href="{{ route('create_product') }}" class="btn btn-primary mb-3"> <i class="fa fa-plus"></i> Tambah</a>
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
@@ -85,7 +57,30 @@
             </div>
         </div>
     </section>
-
-
+    @foreach ($product as $item)
+        <!-- Modal -->
+        <div class="modal fade" id="deleteModal-{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Delete Form</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Kamu yakin ingin menghapus Product <b>{{ $item->nama }}</b> ?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <form action="{{ route('delete_product', ['id' => $item->id]) }}" method="post">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="btn btn-primary">Yakin</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
 
 @endsection
