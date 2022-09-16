@@ -18,6 +18,15 @@
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <h5 class="card-title text-center">Login Form</h5>
                         <form action="{{ route('authenticate') }}" method="post">
                             @csrf

@@ -5,14 +5,23 @@
     <section id="form-create">
         <div class="card">
             <div class="card-body">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <form action="{{ route('update_product', ['id' => $product->id]) }}" method="POST"
                     enctype="multipart/form-data">
                     @csrf
                     @method('patch')
                     <div class="mb-3">
                         <label for="nama" class="form-label">Nama Produk</label>
-                        <input type="text" name="nama" value="{{ $product->nama }}" class="form-control" id="nama"
-                            aria-describedby="emailHelp" required>
+                        <input type="text" name="nama" value="{{ $product->nama }}" class="form-control"
+                            id="nama" aria-describedby="emailHelp" required>
                     </div>
                     <div class="mb-3">
                         <label for="id_kategori" class="form-label">Kategori</label>

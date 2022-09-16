@@ -5,6 +5,15 @@
     <section id="form-create">
         <div class="card">
             <div class="card-body">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <form action="{{ route('update_category', ['id' => $category->id]) }}" method="POST">
                     @csrf
                     @method('patch')
